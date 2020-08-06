@@ -467,3 +467,40 @@ which local search can be introduced in a GA.
 
 ![](images/019-hybridize_ga.jpg)
 
+### Constrained Optimization Problems
+
+Constrained Optimization Problems are those optimization problems in which we have to maximize or minimize a given 
+objective function value that is subject to certain constraints. Therefore, not all results in the solution space are 
+feasible, and the solution space contains feasible regions as shown in the following image.
+
+![](images/020-constrained_optimization.jpg)
+
+In such a scenario, crossover and mutation operators might give us solutions which are infeasible. Therefore, 
+additional mechanisms have to be employed in the GA when dealing with constrained Optimization Problems.
+
+Some of the most common methods are −
+
+- Using penalty functions which reduces the fitness of infeasible solutions, preferably so that the fitness is reduced in 
+proportion with the number of constraints violated or the distance from the feasible region.
+
+- Using repair functions which take an infeasible solution and modify it so that the violated constraints get satisfied.
+
+- Not allowing infeasible solutions to enter into the population at all.
+
+- Use a special representation or decoder functions that ensures feasibility of the solutions.
+
+### Schema Theorem
+
+Researchers have been trying to figure out the mathematics behind the working of genetic algorithms, and 
+Holland’s Schema Theorem is a step in that direction. Over the year’s various improvements and suggestions have been 
+done to the Schema Theorem to make it more general.
+
+- A Schema is a “template”. Formally, it is a string over the alphabet = {0,1,*},
+where * is don’t care and can take any value. Therefore, *10*1 could mean 01001, 01011, 11001, or 11011.
+Geometrically, a schema is a hyper-plane in the solution search space.
+- Order of a schema is the number of specified fixed positions in a gene.
+- Defining length is the distance between the two furthest fixed symbols in the gene.
+
+The schema theorem states that this schema with above average fitness, short defining length and lower order 
+is more likely to survive crossover and mutation.
+
