@@ -75,6 +75,7 @@ Some difficult problems like the Travelling Salesperson Problem (TSP), have real
 VLSI Design. Now imagine that you are using your GPS Navigation system, and it takes a few minutes (or even a few hours) 
 to compute the “optimal” path from the source to destination. Delay in such real world applications is not acceptable 
 and therefore a “good-enough” solution, which is delivered “fast” is what is required.
+
 # Fundamentals
 
 Some basic terminology
@@ -103,3 +104,33 @@ However, in the genotype space it can be represented as a binary string of lengt
 A 0 at position x represents that xth item is picked while a 1 represents the reverse. This is a case where genotype and phenotype spaces are different.
 
 ![](images/002-pheno_genotype_space.jpg)
+
+Fitness Function − A fitness function simply defined is a function which takes the solution as input and produces the suitability of the solution as the output. In some cases, the fitness function and the objective function may be the same, while in others it might be different based on the problem.
+
+Genetic Operators − These alter the genetic composition of the offspring. These include crossover, mutation, selection, etc.
+
+### Basic structures
+
+The basic structure of a GA is as follows −
+
+We start with an initial population (which may be generated at random or seeded by other heuristics), select parents from 
+this population for mating. Apply crossover and mutation operators on the parents to generate new off-springs. And finally 
+these off-springs replace the existing individuals in the population and the process repeats. In this way genetic algorithms 
+actually try to mimic the human evolution to some extent.
+
+A generalized pseudo-code for a GA is explained in the following program −
+
+```
+GA()
+   initialize population
+   find fitness of population
+   
+   while (termination criteria is reached) do
+      parent selection
+      crossover with probability pc
+      mutation with probability pm
+      decode and fitness calculation
+      survivor selection
+      find best
+   return best
+```
