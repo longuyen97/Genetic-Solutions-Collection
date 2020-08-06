@@ -325,8 +325,8 @@ Swap Mutation - In swap mutation, we select two positions on the chromosome at r
 
 Scramble Mutation - Scramble mutation is also popular with permutation representations. In this, from the entire chromosome, a subset of genes is chosen and their values are scrambled or shuffled randomly.
 
-![](images/015-inversion_mutation.jpg)
+![](images/016-scramble_mutation.jpg)
 
 Inversion Mutation - In inversion mutation, we select a subset of genes like in scramble mutation, but instead of shuffling the subset, we merely invert the entire string in the subset.
 
-![](images/016-scramble_mutation.jpg)
+![](images/015-inversion_mutation.jpg)
