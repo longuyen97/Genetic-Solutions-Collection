@@ -101,3 +101,5 @@ For example, consider the 0/1 Knapsack Problem. The Phenotype space consists of 
 
 However, in the genotype space it can be represented as a binary string of length n (where n is the number of items). 
 A 0 at position x represents that xth item is picked while a 1 represents the reverse. This is a case where genotype and phenotype spaces are different.
+
+![](images/002-pheno_genotype_space.jpg)
