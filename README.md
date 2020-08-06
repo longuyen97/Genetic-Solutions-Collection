@@ -330,3 +330,86 @@ Scramble Mutation - Scramble mutation is also popular with permutation represent
 Inversion Mutation - In inversion mutation, we select a subset of genes like in scramble mutation, but instead of shuffling the subset, we merely invert the entire string in the subset.
 
 ![](images/015-inversion_mutation.jpg)
+
+### Survivor Selection
+
+The Survivor Selection Policy determines which individuals are to be kicked out and which are to be kept in the next 
+generation. It is crucial as it should ensure that the fitter individuals are not kicked out of the population, while 
+at the same time diversity should be maintained in the population.
+
+Some GAs employ Elitism. In simple terms, it means the current fittest member of the population is always propagated to 
+the next generation. Therefore, under no circumstance can the fittest member of the current population be replaced.
+
+The easiest policy is to kick random members out of the population, but such an approach frequently has convergence 
+issues, therefore the following strategies are widely used.
+
+- Age Based Selection
+
+In Age-Based Selection, we don’t have a notion of a fitness. It is based on the premise that each individual is allowed 
+in the population for a finite generation where it is allowed to reproduce, after that, it is kicked out of the 
+population no matter how good its fitness is.
+
+For instance, in the following example, the age is the number of generations for which the individual has been in the 
+population. The oldest members of the population i.e. P4 and P7 are kicked out of the population and the ages of the 
+rest of the members are incremented by one.
+
+![](images/017-age_based_selection.jpg)
+
+- Fitness Based Selection
+
+In this fitness based selection, the children tend to replace the least fit individuals in the population. The 
+selection of the least fit individuals may be done using a variation of any of the selection policies described 
+before – tournament selection, fitness proportionate selection, etc.
+
+For example, in the following image, the children replace the least fit individuals P1 and P10 of the population. It 
+is to be noted that since P1 and P9 have the same fitness value, the decision to remove which individual from the 
+population is arbitrary.
+
+![](images/018-fitness_based_selection.jpg)
+
+### Termination Condition
+
+The termination condition of a Genetic Algorithm is important in determining when a GA run will end. It has been observed 
+that initially, the GA progresses very fast with better solutions coming in every few iterations, but this tends to 
+saturate in the later stages where the improvements are very small. We usually want a termination condition such that 
+our solution is close to the optimal, at the end of the run.
+
+Usually, we keep one of the following termination conditions −
+
+- When there has been no improvement in the population for X iterations.
+- When we reach an absolute number of generations.
+- When the objective function value has reached a certain pre-defined value.
+
+For example, in a genetic algorithm we keep a counter which keeps track of the generations for which there has been no 
+improvement in the population. Initially, we set this counter to zero. Each time we don’t generate off-springs which are 
+better than the individuals in the population, we increment the counter.
+
+However, if the fitness any of the off-springs is better, then we reset the counter to zero. The algorithm terminates 
+when the counter reaches a predetermined value.
+
+Like other parameters of a GA, the termination condition is also highly problem specific and the GA designer should try 
+out various options to see what suits his particular problem the best.
+
+### Models Of Lifetime Adaptation
+
+Till now in this tutorial, whatever we have discussed corresponds to the Darwinian model of evolution – natural selection 
+and genetic variation through recombination and mutation. In nature, only the information contained in the individual’s 
+genotype can be transmitted to the next generation. This is the approach which we have been following in the tutorial so far.
+
+However, other models of lifetime adaptation – Lamarckian Model and Baldwinian Model also do exist. It is to be noted that 
+whichever model is the best, is open for debate and the results obtained by researchers show that the choice of lifetime 
+adaptation is highly problem specific.
+
+Often, we hybridize a GA with local search – like in Memetic Algorithms. In such cases, one might choose do go with either 
+Lamarckian or Baldwinian Model to decide what to do with individuals generated after the local search.
+
+- Lamarckian Model
+The Lamarckian Model essentially says that the traits which an individual acquires in his/her lifetime can be passed 
+on to its offspring. It is named after French biologist Jean-Baptiste Lamarck.
+
+Even though, natural biology has completely disregarded Lamarckism as we all know that only the information in the 
+genotype can be transmitted. However, from a computation view point, it has been shown that adopting the Lamarckian 
+model gives good results for some of the problems.
+
+In the Lamarckian model, a local search operator examines the neighborhood (acquiring new traits), and if a better 
+chromosome is found, it becomes the offspring.
