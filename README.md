@@ -291,3 +291,15 @@ Child2 = α.x + (1-α).y
 Obviously, if α = 0.5, then both the children will be identical as shown in the following image.
 
 ![](images/011-whole_arithmetic_recombination.jpg)
+
+Davis’ Order Crossover (OX1) - OX1 is used for permutation based crossovers with the intention of transmitting information 
+about relative ordering to the off-springs. It works as follows −
+
+- Create two random crossover points in the parent and copy the segment between them from the first parent to the first offspring.
+
+- Now, starting from the second crossover point in the second parent, copy the remaining unused numbers from the second 
+parent to the first child, wrapping around the list.
+
+- Repeat for the second child with the parent’s role reversed.
+
+![](images/012-david_order_crossover.jpg)
