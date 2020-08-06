@@ -249,3 +249,45 @@ just sums the profit values of the items being picked (which have a 1), scanning
 
 ### Parent selection
 
+Parent Selection is the process of selecting parents which mate and recombine to create off-springs for the next generation. 
+Parent selection is very crucial to the convergence rate of the GA as good parents drive individuals to a better and fitter solutions.
+
+However, care should be taken to prevent one extremely fit solution from taking over the entire population in a few generations, 
+as this leads to the solutions being close to one another in the solution space thereby leading to a loss of diversity. 
+Maintaining good diversity in the population is extremely crucial for the success of a GA. This taking up of the entire 
+population by one extremely fit solution is known as premature convergence and is an undesirable condition in a GA.
+
+Fitness Proportionate Selection is one of the most popular ways of parent selection. In this every individual can become 
+a parent with a probability which is proportional to its fitness. Therefore, fitter individuals have a higher chance of 
+mating and propagating their features to the next generation. Therefore, such a selection strategy applies a selection 
+pressure to the more fit individuals in the population, evolving better individuals over time.
+
+### Crossover
+
+The crossover operator is analogous to reproduction and biological crossover. In this more than one parent is selected 
+and one or more off-springs are produced using the genetic material of the parents. Crossover 
+is usually applied in a GA with a high probability – pc.
+
+One Point Crossover - In this one-point crossover, a random crossover point is selected and the tails of its two parents are swapped to get new off-springs.
+
+![](images/008-one_point_crossover.jpg)
+
+Multi Point Crossover - Multi point crossover is a generalization of the one-point crossover wherein alternating segments are swapped to get new off-springs.
+
+![](images/009-multi_point_crossover.jpg)
+
+Uniform Crossover - In a uniform crossover, we don’t divide the chromosome into segments, rather we treat each gene separately. 
+In this, we essentially flip a coin for each chromosome to decide whether or not it’ll be included in the off-spring. We can 
+also bias the coin to one parent, to have more genetic material in the child from that parent.
+
+![](images/010-uniform_crossover.jpg)
+
+Whole Arithmetic Recombination - This is commonly used for integer representations and works by taking the weighted average 
+of the two parents by using the following formulae −
+                                 
+Child1 = α.x + (1-α).y
+Child2 = α.x + (1-α).y
+
+Obviously, if α = 0.5, then both the children will be identical as shown in the following image.
+
+![](images/011-whole_arithmetic_recombination.jpg)
