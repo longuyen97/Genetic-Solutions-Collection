@@ -75,5 +75,29 @@ Some difficult problems like the Travelling Salesperson Problem (TSP), have real
 VLSI Design. Now imagine that you are using your GPS Navigation system, and it takes a few minutes (or even a few hours) 
 to compute the “optimal” path from the source to destination. Delay in such real world applications is not acceptable 
 and therefore a “good-enough” solution, which is delivered “fast” is what is required.
-
 # Fundamentals
+
+Some basic terminology
+
+Population − It is a subset of all the possible (encoded) solutions to the given problem. The population for a GA is analogous to the population for human beings except that instead of human beings, we have Candidate Solutions representing human beings.
+
+Chromosomes − A chromosome is one such solution to the given problem.
+
+Gene − A gene is one element position of a chromosome.
+
+Allele − It is the value a gene takes for a particular chromosome.
+
+![](images/001-terminology.jpg)
+
+Genotype − Genotype is the population in the computation space. In the computation space, the solutions are represented in a way which can be easily understood and manipulated using a computing system.
+
+Phenotype − Phenotype is the population in the actual real world solution space in which solutions are represented in a way they are represented in real world situations.
+
+Decoding and Encoding − For simple problems, the phenotype and genotype spaces are the same. However, in most of the cases, the phenotype and genotype spaces are different. 
+Decoding is a process of transforming a solution from the genotype to the phenotype space, while encoding is a process of transforming from the phenotype to genotype space. 
+Decoding should be fast as it is carried out repeatedly in a GA during the fitness value calculation.
+
+For example, consider the 0/1 Knapsack Problem. The Phenotype space consists of solutions which just contain the item numbers of the items to be picked.
+
+However, in the genotype space it can be represented as a binary string of length n (where n is the number of items). 
+A 0 at position x represents that xth item is picked while a 1 represents the reverse. This is a case where genotype and phenotype spaces are different.
