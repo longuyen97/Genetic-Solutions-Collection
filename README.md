@@ -413,3 +413,57 @@ model gives good results for some of the problems.
 
 In the Lamarckian model, a local search operator examines the neighborhood (acquiring new traits), and if a better 
 chromosome is found, it becomes the offspring.
+
+- Baldwinian Model
+The Baldwinian model is an intermediate idea named after James Mark Baldwin (1896). In the Baldwin model, the 
+chromosomes can encode a tendency of learning beneficial behaviors. This means, that unlike the Lamarckian model, we 
+don’t transmit the acquired traits to the next generation, and neither do we completely ignore the acquired traits like 
+in the Darwinian Model.
+
+The Baldwin Model is in the middle of these two extremes, wherein the tendency of an individual to acquire certain traits 
+is encoded rather than the traits themselves.
+
+In this Baldwinian Model, a local search operator examines the neighborhood (acquiring new traits), and if a better 
+chromosome is found, it only assigns the improved fitness to the chromosome and does not modify the chromosome itself. 
+The change in fitness signifies the chromosomes capability to “acquire the trait”, even though it is not passed 
+directly to the future generations.
+
+### Effective Implementation
+
+GAs are very general in nature, and just applying them to any optimization problem wouldn’t give good results. 
+In this section, we describe a few points which would help and assist a GA designer or GA implementer in their work.
+
+- Introduce problem-specific domain knowledge
+
+It has been observed that the more problem-specific domain knowledge we incorporate into the GA; the better objective 
+values we get. Adding problem specific information can be done by either using problem specific crossover or mutation 
+operators, custom representations, etc.
+
+- Reduce Crowding
+
+Crowding happens when a highly fit chromosome gets to reproduce a lot, and in a few generations, the entire population 
+is filled with similar solutions having similar fitness. This reduces diversity which is a very crucial element to 
+ensure the success of a GA. There are numerous ways to limit crowding. Some of them are −
+
+Mutation to introduce diversity.
+
+Switching to rank selection and tournament selection which have more selection pressure than fitness proportionate selection 
+for individuals with similar fitness.
+
+Fitness Sharing − In this an individual’s fitness is reduced if the population already contains similar individuals.
+
+- Randomization Helps!
+
+It has been experimentally observed that the best solutions are driven by randomized chromosomes as they impart 
+diversity to the population. The GA implementer should be careful to keep sufficient amount of randomization and diversity 
+in the population for the best results.
+
+- Hybridize GA with Local Search
+
+Local search refers to checking the solutions in the neighborhood of a given solution to look for better objective values.
+
+It may be sometimes useful to hybridize the GA with local search. The following image shows the various places in 
+which local search can be introduced in a GA.
+
+![](images/019-hybridize_ga.jpg)
+
