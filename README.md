@@ -188,3 +188,35 @@ a permutation representation makes sense for this problem.
 ![](images/006-permutation_representation.jpg)
 
 ### Population
+
+Population is a subset of solutions in the current generation. It can also be defined as a set of chromosomes. There are 
+several things to be kept in mind when dealing with GA population −
+
+- The diversity of the population should be maintained otherwise it might lead to premature convergence.
+
+- The population size should not be kept very large as it can cause a GA to slow down, while a smaller population might 
+not be enough for a good mating pool. Therefore, an optimal population size needs to be decided by trial and error.
+
+The population is usually defined as a two dimensional array of – size population, size x, chromosome size.
+
+There are two primary methods to initialize a population in a GA. They are −
+
+- Random Initialization − Populate the initial population with completely random solutions.
+
+- Heuristic initialization − Populate the initial population using a known heuristic for the problem.
+
+It has been observed that the entire population should not be initialized using a heuristic, as it can result in the population 
+having similar solutions and very little diversity. It has been experimentally observed that the random solutions are 
+the ones to drive the population to optimality. Therefore, with heuristic initialization, we just seed the population 
+with a couple of good solutions, filling up the rest with random solutions rather than filling the entire population with heuristic based solutions.
+
+It has also been observed that heuristic initialization in some cases, only effects the initial fitness of the population, 
+but in the end, it is the diversity of the solutions which lead to optimality.
+
+There are two population models widely in use −
+
+- Steady State: In steady state GA, we generate one or two off-springs in each iteration and they replace one or two 
+individuals from the population. A steady state GA is also known as Incremental GA.
+
+- Generational: In a generational model, we generate ‘n’ off-springs, where n is the population size, and the entire population 
+is replaced by the new one at the end of the iteration.
