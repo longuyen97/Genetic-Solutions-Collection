@@ -303,3 +303,30 @@ parent to the first child, wrapping around the list.
 - Repeat for the second child with the parent’s role reversed.
 
 ![](images/012-david_order_crossover.jpg)
+
+### Mutation
+
+In simple terms, mutation may be defined as a small random tweak in the chromosome, to get a new solution. It is used to 
+maintain and introduce diversity in the genetic population and is usually applied with a low probability – pm. If the 
+probability is very high, the GA gets reduced to a random search.
+
+Mutation is the part of the GA which is related to the “exploration” of the search space. It has been observed that mutation 
+is essential to the convergence of the GA while crossover is not.
+
+Bit Flip Mutation - In this bit flip mutation, we select one or more random bits and flip them. This is used for binary encoded GAs.
+
+![](images/013-bit_flip_mutation.jpg)
+
+Random Resetting - Random Resetting is an extension of the bit flip for the integer representation. In this, a random value from the set of permissible values is assigned to a randomly chosen gene.
+
+Swap Mutation - In swap mutation, we select two positions on the chromosome at random, and interchange the values. This is common in permutation based encodings.
+
+![](images/014-swap_mutation.jpg)
+
+Scramble Mutation - Scramble mutation is also popular with permutation representations. In this, from the entire chromosome, a subset of genes is chosen and their values are scrambled or shuffled randomly.
+
+![](images/015-inversion_mutation.jpg)
+
+Inversion Mutation - In inversion mutation, we select a subset of genes like in scramble mutation, but instead of shuffling the subset, we merely invert the entire string in the subset.
+
+![](images/016-scramble_mutation.jpg)
