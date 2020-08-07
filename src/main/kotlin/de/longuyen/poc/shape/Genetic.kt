@@ -4,20 +4,20 @@ import java.awt.Color
 import java.awt.Graphics
 import java.util.*
 
-class Genetic(val populationContext: PopulationContext) {
+class Genetic(private val populationContext: PopulationContext) {
     val random = Random()
 
-    fun newIndividual(): Chromosome {
+    private fun newIndividual(): Chromosome {
         val genes = mutableListOf<Shape>()
-        (1..populationContext.geneCount).forEach {
+        (1..populationContext.geneCount).forEach { _ ->
             genes.add(newShape())
         }
         return Chromosome(genes, Double.MAX_VALUE)
     }
 
     fun newPopulation(): List<Chromosome> {
-        var population = mutableListOf<Chromosome>()
-        (1..this.populationContext.populationCount).forEach {
+        val population = mutableListOf<Chromosome>()
+        (1..this.populationContext.populationCount).forEach { _ ->
             population.add(newIndividual())
         }
         return population
@@ -31,30 +31,22 @@ class Genetic(val populationContext: PopulationContext) {
         }
     }
 
-    fun copy(chromosome: Chromosome) : Chromosome {
-        val copied = mutableListOf<Shape>()
-        chromosome.dna.forEach { gene ->
-            copied.add(gene.copy())
-        }
-        return Chromosome(copied, chromosome.fitness)
-    }
-
     fun bound(value: Int, min: Int, max: Int): Int {
         if (value < min) { return min; }
         if (value > max) { return max; }
         return value
     }
 
-    fun newColor(): IntArray {
+    private fun newColor(): IntArray {
         val color = IntArray(4)
-        color.set(0, random.nextInt(256))
-        color.set(1, random.nextInt(256))
-        color.set(2, random.nextInt(256))
-        color.set(3, random.nextInt(256))
+        color[0] = random.nextInt(256)
+        color[1] = random.nextInt(256)
+        color[2] = random.nextInt(256)
+        color[3] = random.nextInt(256)
         return color
     }
 
-    fun newShape(): Shape {
+    private fun newShape(): Shape {
         val shapeIndex = random.nextInt(populationContext.allowedShapes.size)
         when (populationContext.allowedShapes.get(shapeIndex)) {
             ShapeType.RECTANGLE -> return newRectangle()
@@ -69,9 +61,9 @@ class Genetic(val populationContext: PopulationContext) {
         val numberPoints = random.nextInt(populationContext.maxPolygonSize - 2) + 3
         val x = IntArray(numberPoints)
         val y = IntArray(numberPoints)
-        (0..numberPoints-1).forEach { i ->
-            x.set(i, random.nextInt(populationContext.width))
-            y.set(i, random.nextInt(populationContext.height))
+        (0 until numberPoints).forEach { i ->
+            x[i] = random.nextInt(populationContext.width)
+            y[i] = random.nextInt(populationContext.height)
         }
         val z = random.nextInt(1000)
         val color = newColor()
@@ -97,7 +89,7 @@ class Genetic(val populationContext: PopulationContext) {
         return Circle(color, x, y, z, r)
     }
 
-    fun newPixel(): Pixel {
+    private fun newPixel(): Pixel {
         val x = random.nextInt(populationContext.width / populationContext.pixelSize) * populationContext.pixelSize
         val y = random.nextInt(populationContext.height / populationContext.pixelSize) * populationContext.pixelSize
         val z = random.nextInt(1000)

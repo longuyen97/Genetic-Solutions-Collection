@@ -1,12 +1,12 @@
 package de.longuyen.poc.shape
 
 
-import ImageDifference
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.XChartPanel
 import org.knowm.xchart.XYChart
 import java.awt.Graphics
 import java.awt.GridLayout
+import java.awt.Rectangle
 import java.awt.image.BufferedImage
 import java.io.File
 import java.util.*
@@ -37,7 +37,7 @@ class PopulationBasedGeneticDraw {
     private val mutator = IncrementalMutator(context)
     val genetic = Genetic(context)
     private val crossOver = CrossOver()
-    private val fitnessFunction = ImageDifference(2)
+    private val fitnessFunction = ConstraintImageDifference(2, Rectangle(142, 58, 150, 230))
     private val selector = StochasticSelector()
 
     private val canvas: BufferedImage = BufferedImage(context.width, context.height, BufferedImage.TYPE_INT_ARGB)
@@ -53,11 +53,11 @@ class PopulationBasedGeneticDraw {
     val saveOutput = true
     val saveOutputFrequency = 25
     var i = 0
-    private val epochs = mutableListOf<Double>(0.0)
-    private val differences = mutableListOf<Double>(0.0)
+    private val epochs = mutableListOf(0.0)
+    private val differences = mutableListOf(0.0)
 
     init {
-        val frame = JFrame()
+        val frame = JFrame("Population based genetic approximation")
         val mainFrameContainer = frame.contentPane
         frame.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
         frame.setSize(target.width * 2, target.height * 2)
@@ -90,10 +90,11 @@ class PopulationBasedGeneticDraw {
         decodedImage.setSize(target.width, target.height)
         mainFrameContainer.add(imagesPanel)
 
-        chart = QuickChart.getChart("Model's performance", "Epochs", "Cost", "cost", epochs, differences)
+        chart = QuickChart.getChart("Population's best fitness", "Epochs", "Cost", "cost", epochs, differences)
         chartPanel = XChartPanel(chart)
         mainFrameContainer.add(chartPanel)
         decodedImage.revalidate()
+        imagesPanel.revalidate()
         frame.revalidate()
     }
 
@@ -111,6 +112,10 @@ class PopulationBasedGeneticDraw {
             chart.updateXYSeries("cost", epochs, differences, null)
             chartPanel.revalidate()
             chartPanel.repaint()
+            targetImage.revalidate()
+            decodedImage.revalidate()
+            decodedImage.repaint()
+            imagesPanel.revalidate()
             println("${i}, ${population.first().fitness}")
             population = buildNextGeneration(population)
             i++
@@ -137,10 +142,10 @@ class PopulationBasedGeneticDraw {
         return nextGeneration
     }
 
-    private fun evaluateFitness(g: Graphics, population: List<Chromosome>): List<Chromosome> {
-        population.forEach { individual ->
-            genetic.expressDna(g, individual) // expresses to canvas, reuse
-            individual.fitness = fitnessFunction.compare(canvas, target)
+    private fun evaluateFitness(graphics: Graphics, population: List<Chromosome>): List<Chromosome> {
+        population.forEach { chromosome ->
+            genetic.expressDna(graphics, chromosome)
+            chromosome.fitness = fitnessFunction.compare(canvas, target)
         }
         return population.sortedBy { individual -> individual.fitness }
     }
