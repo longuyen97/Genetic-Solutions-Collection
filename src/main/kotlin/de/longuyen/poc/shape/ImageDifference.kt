@@ -1,18 +1,39 @@
+package de.longuyen.poc.shape
 
-
+import java.awt.Color
 import java.awt.image.BufferedImage
 import kotlin.math.abs
 
-class ImageDifference(private val stepSize: Int) {
-     fun compare(bi: BufferedImage, bi2: BufferedImage): Double {
+class ImageDifference(private val b1: BufferedImage, private val stepSize: Int) {
+    private val reds: Array<DoubleArray> = Array(b1.height) { _ -> DoubleArray(b1.width) { _ -> (0.0)} }
+    private val greens: Array<DoubleArray> = Array(b1.height) { _ -> DoubleArray(b1.width) { _ -> (0.0)} }
+    private val blues: Array<DoubleArray> = Array(b1.height) { _ -> DoubleArray(b1.width) { _ -> (0.0)} }
+
+    init {
+        (0 until b1.height ).forEach { y ->
+            val red = DoubleArray(b1.width)
+            val green = DoubleArray(b1.width)
+            val blue = DoubleArray(b1.width)
+            (0 until b1.width).forEach { x ->
+                val rgb = Color(b1.getRGB(x, y))
+                red[x] = rgb.red.toDouble()
+                green[x] = rgb.green.toDouble()
+                blue[x] = rgb.blue.toDouble()
+            }
+            reds[y] = red
+            greens[y] = green
+            blues[y] = blue
+        }
+    }
+
+    fun compare(bi2: BufferedImage): Double {
         var error = 0.0
-        (0 until bi.width step stepSize).forEach{ x ->
-            (0 until bi.height step stepSize).forEach{ y ->
-                val rgb = bi.getRGB(x, y)
-                val rgb2 = bi2.getRGB(x, y)
-                error += abs((rgb and 0xFF) - (rgb2 and 0xFF))
-                error += abs(((rgb shr 8) and 0xFF) - ((rgb2 shr 8) and 0xFF))
-                error += abs(((rgb shr 16) and 0xFF) - ((rgb2 shr 16) and 0xFF))
+        (0 until b1.height step stepSize).forEach { y ->
+            (0 until b1.width step stepSize).forEach { x ->
+                val rgb = Color(bi2.getRGB(x, y))
+                error += abs(reds[y][x] - rgb.red.toDouble())
+                error +=  abs(blues[y][x] - rgb.blue.toDouble())
+                error +=  abs(greens[y][x] - rgb.green.toDouble())
             }
         }
         return error

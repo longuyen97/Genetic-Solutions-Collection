@@ -1,6 +1,7 @@
-package de.longuyen.poc.shape
+package de.longuyen.poc
 
 
+import de.longuyen.poc.shape.*
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.XChartPanel
 import org.knowm.xchart.XYChart
@@ -26,10 +27,16 @@ class PopulationBasedGeneticDraw {
     val context = PopulationContext(
         width = target.width,
         height = target.height,
-        geneCount = 2500,
-        populationCount = 20,
+        geneCount = 2000,
+        populationCount = 15,
         mutationProbability = DynamicRangeProbability(0.001f, 0.01f),
-        allowedShapes = arrayOf(ShapeType.RECTANGLE, ShapeType.ELLIPSE),
+        allowedShapes = arrayOf(
+            ShapeType.RECTANGLE,
+            ShapeType.ELLIPSE,
+            ShapeType.CIRCLE,
+            ShapeType.POLYGON,
+            ShapeType.PIXEL
+        ),
         maxPolygonSize = 3,
         useAlpha = true
     )
@@ -37,11 +44,9 @@ class PopulationBasedGeneticDraw {
     private val mutator = IncrementalMutator(context)
     val genetic = Genetic(context)
     private val crossOver = CrossOver()
-    private val fitnessFunction = ConstraintImageDifference(2, Rectangle(142, 58, 150, 230))
+    private val fitnessFunction = ConstraintedImageDifference(target, 2, Rectangle(142, 58, 150, 230))
     private val selector = StochasticSelector()
 
-    private val canvas: BufferedImage = BufferedImage(context.width, context.height, BufferedImage.TYPE_INT_ARGB)
-    private val canvasGraphics: Graphics = canvas.graphics
     private val decodedImage: JPanel
     private val targetImage: JPanel
     private val imagesPanel: JPanel
@@ -99,17 +104,15 @@ class PopulationBasedGeneticDraw {
     }
 
     fun run() {
+        epochs.removeAt(0)
+        differences.removeAt(0)
         do {
-            population = evaluateFitness(canvasGraphics, population)
+            population = evaluateFitness(population)
             epochs.add(i.toDouble())
             differences.add(population.first().fitness)
-            if (epochs.size > 100) {
-                epochs.removeAt(0)
+            if(i % 10 == 0) {
+                chart.updateXYSeries("cost", epochs, differences, null)
             }
-            if (differences.size > 100) {
-                differences.removeAt(0)
-            }
-            chart.updateXYSeries("cost", epochs, differences, null)
             chartPanel.revalidate()
             chartPanel.repaint()
             targetImage.revalidate()
@@ -126,10 +129,6 @@ class PopulationBasedGeneticDraw {
 
     private fun buildNextGeneration(population: List<Chromosome>): List<Chromosome> {
         val nextGeneration = mutableListOf<Chromosome>()
-
-        if (context.populationCount == 1) {
-            throw RuntimeException("Population must be > 1")
-        }
         // elitism
         nextGeneration.add(population.first())
 
@@ -142,10 +141,12 @@ class PopulationBasedGeneticDraw {
         return nextGeneration
     }
 
-    private fun evaluateFitness(graphics: Graphics, population: List<Chromosome>): List<Chromosome> {
-        population.forEach { chromosome ->
-            genetic.expressDna(graphics, chromosome)
-            chromosome.fitness = fitnessFunction.compare(canvas, target)
+    private fun evaluateFitness(population: List<Chromosome>): List<Chromosome> {
+        population.parallelStream().forEach() { chromosome ->
+            val canvas = BufferedImage(context.width, context.height, BufferedImage.TYPE_INT_ARGB)
+            val canvasGraphics: Graphics = canvas.graphics
+            genetic.expressDna(canvasGraphics, chromosome)
+            chromosome.fitness = fitnessFunction.compare(canvas)
         }
         return population.sortedBy { individual -> individual.fitness }
     }
