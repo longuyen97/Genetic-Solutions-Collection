@@ -2,8 +2,10 @@ package de.longuyen.poc.select
 
 import de.longuyen.poc.chromosome.IChromosome
 
-interface ISurvivorSelection<T : Comparable<T>> {
-    fun <K : IChromosome<T>> select(population: Collection<K>): Collection<Int>
+interface ISurvivorSelection<K: IChromosome> {
+    fun select(population: List<K>): List<Int>
 
-    fun <K : IChromosome<T>> sortOut(population: Collection<K>): Collection<Int>
+    fun sortOut(population: List<K>): List<Int>
+
+    fun mutate(population: List<K>): List<Int>
 }
