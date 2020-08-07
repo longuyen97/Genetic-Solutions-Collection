@@ -23,19 +23,19 @@ fun main() {
 
 class PopulationBasedGeneticDraw {
     val random = Random()
-    private val target: BufferedImage = ImageIO.read(File("images/naruto.jpg"))
+    private val target: BufferedImage = ImageIO.read(File("images/racoon.jpg"))
     val context = PopulationContext(
         width = target.width,
         height = target.height,
-        geneCount = 2000,
+        geneCount = 3000,
         populationCount = 15,
         mutationProbability = DynamicRangeProbability(0.001f, 0.01f),
         allowedShapes = arrayOf(
-            ShapeType.RECTANGLE,
-            ShapeType.ELLIPSE,
-            ShapeType.CIRCLE,
-            ShapeType.POLYGON,
-            ShapeType.PIXEL
+            //ShapeType.RECTANGLE,
+            //ShapeType.ELLIPSE,
+            ShapeType.CIRCLE
+            //ShapeType.POLYGON,
+            //ShapeType.PIXEL
         ),
         maxPolygonSize = 3,
         useAlpha = true
@@ -44,7 +44,7 @@ class PopulationBasedGeneticDraw {
     private val mutator = IncrementalMutator(context)
     val genetic = Genetic(context)
     private val crossOver = CrossOver()
-    private val fitnessFunction = ConstraintedImageDifference(target, 2, Rectangle(142, 58, 150, 230))
+    private val fitnessFunction = ConstraintedImageDifference(target, 4, Rectangle(142, 58, 150, 230))
     private val selector = StochasticSelector()
 
     private val decodedImage: JPanel
@@ -56,7 +56,7 @@ class PopulationBasedGeneticDraw {
     val mostFitCanvasGraphics: Graphics = mostFitCanvas.graphics
     var population = genetic.newPopulation()
     val saveOutput = true
-    val saveOutputFrequency = 25
+    val saveOutputFrequency = 20
     var i = 0
     private val epochs = mutableListOf(0.0)
     private val differences = mutableListOf(0.0)
@@ -119,7 +119,6 @@ class PopulationBasedGeneticDraw {
             decodedImage.revalidate()
             decodedImage.repaint()
             imagesPanel.revalidate()
-            println("${i}, ${population.first().fitness}")
             population = buildNextGeneration(population)
             i++
         } while (population.first().fitness > 0)

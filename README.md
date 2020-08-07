@@ -3,9 +3,11 @@
 <table border="1" width="100%">
     <tr>
         <td><img src="images/021-naruto.png" width="250"></td>
+        <td><img src="images/023-racoon.png" width="250"></td>
     </tr>
     <tr>
         <td><img src="images/022-naruto.gif" width="250"></td>
+        <td><img src="images/024-racoon.gif" width="250"></td>
     </tr>
 </table>
 
