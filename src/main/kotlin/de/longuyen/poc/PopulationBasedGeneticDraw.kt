@@ -23,19 +23,19 @@ fun main() {
 
 class PopulationBasedGeneticDraw {
     val random = Random()
-    private val target: BufferedImage = ImageIO.read(File("images/racoon.jpg"))
+    private val target: BufferedImage = ImageIO.read(File("images/saitama.jpg"))
     val context = PopulationContext(
         width = target.width,
         height = target.height,
-        geneCount = 3000,
-        populationCount = 15,
+        geneCount = 5000,
+        populationCount = 25,
         mutationProbability = DynamicRangeProbability(0.001f, 0.01f),
         allowedShapes = arrayOf(
-            //ShapeType.RECTANGLE,
-            //ShapeType.ELLIPSE,
-            ShapeType.CIRCLE
-            //ShapeType.POLYGON,
-            //ShapeType.PIXEL
+            ShapeType.RECTANGLE,
+            ShapeType.ELLIPSE,
+            ShapeType.CIRCLE,
+            ShapeType.POLYGON,
+            ShapeType.PIXEL
         ),
         maxPolygonSize = 3,
         useAlpha = true
