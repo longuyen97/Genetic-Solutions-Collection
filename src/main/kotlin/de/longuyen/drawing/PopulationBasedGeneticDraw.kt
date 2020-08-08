@@ -1,6 +1,11 @@
 package de.longuyen.drawing
 
 
+import de.longuyen.drawing.costs.ImageDifference
+import de.longuyen.drawing.operator.CrossOver
+import de.longuyen.drawing.operator.DynamicRangeProbability
+import de.longuyen.drawing.operator.IncrementalMutator
+import de.longuyen.drawing.operator.StochasticSelector
 import de.longuyen.drawing.shape.*
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.XChartPanel
@@ -9,23 +14,12 @@ import java.awt.Graphics
 import java.awt.GridLayout
 import java.awt.image.BufferedImage
 import java.io.File
-import java.util.*
 import javax.imageio.ImageIO
 import javax.swing.JFrame
 import javax.swing.JPanel
 import javax.swing.WindowConstants
 
-
-fun main(args: Array<String>) {
-    if(args.size > 0) {
-        PopulationBasedGeneticDraw(args[0]).run()
-    }else{
-        PopulationBasedGeneticDraw("images/raupy.png").run()
-    }
-}
-
 class PopulationBasedGeneticDraw(filename: String) {
-    val random = Random()
     private val target: BufferedImage = ImageIO.read(File(filename))
     val context = PopulationContext(
         width = target.width,

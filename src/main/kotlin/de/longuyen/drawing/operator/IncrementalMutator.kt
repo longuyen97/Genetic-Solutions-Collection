@@ -1,8 +1,12 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.operator
 
+import de.longuyen.drawing.Genetic
+import de.longuyen.drawing.PopulationContext
+import de.longuyen.drawing.shape.*
 import java.util.*
 
-class IncrementalMutator(val populationContext: PopulationContext) : Mutator {
+class IncrementalMutator(val populationContext: PopulationContext) :
+    Mutator {
     val random = Random()
     private val genetic = Genetic(populationContext)
 

@@ -1,5 +1,5 @@
 
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.costs
 
 import java.awt.Color
 import java.awt.Rectangle

@@ -1,11 +1,12 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing
 
+import de.longuyen.drawing.shape.*
 import java.awt.Color
 import java.awt.Graphics
 import java.util.*
 
 class Genetic(private val populationContext: PopulationContext) {
-    val random = Random()
+    private val random = Random()
 
     private fun newIndividual(): Chromosome {
         val genes = mutableListOf<Shape>()
@@ -48,7 +49,7 @@ class Genetic(private val populationContext: PopulationContext) {
 
     private fun newShape(): Shape {
         val shapeIndex = random.nextInt(populationContext.allowedShapes.size)
-        when (populationContext.allowedShapes.get(shapeIndex)) {
+        when (populationContext.allowedShapes[shapeIndex]) {
             ShapeType.RECTANGLE -> return newRectangle()
             ShapeType.ELLIPSE -> return newEllipse()
             ShapeType.POLYGON -> return newPolygon()

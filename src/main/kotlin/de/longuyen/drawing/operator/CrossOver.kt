@@ -1,5 +1,7 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.operator
 
+import de.longuyen.drawing.Chromosome
+import de.longuyen.drawing.shape.Shape
 import java.util.*
 
 class CrossOver {

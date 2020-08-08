@@ -1,5 +1,6 @@
 package de.longuyen.drawing.shape
 
+import de.longuyen.drawing.PopulationContext
 import java.awt.Color
 import java.awt.Graphics
 

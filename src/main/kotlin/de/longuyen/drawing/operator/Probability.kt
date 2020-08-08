@@ -1,4 +1,4 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.operator
 
 interface Probability {
     fun next(): Float

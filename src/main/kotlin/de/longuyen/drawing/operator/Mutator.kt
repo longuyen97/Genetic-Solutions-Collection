@@ -1,4 +1,7 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.operator
+
+import de.longuyen.drawing.Chromosome
+import de.longuyen.drawing.shape.Shape
 
 interface Mutator {
     fun mutate(gene: Shape, probability: Float): Shape
@@ -8,6 +11,9 @@ interface Mutator {
         chromosome.dna.forEach { gene ->
             mutated.add(mutate(gene, probability))
         }
-        return Chromosome(mutated.sortedBy { mutated -> mutated.z }, Double.MAX_VALUE)
+        return Chromosome(
+            mutated.sortedBy { mutated -> mutated.z },
+            Double.MAX_VALUE
+        )
     }
 }

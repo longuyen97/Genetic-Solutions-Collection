@@ -1,12 +1,21 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing
+
+import de.longuyen.drawing.operator.Probability
+import de.longuyen.drawing.shape.ShapeType
+import de.longuyen.drawing.operator.StaticProbability
 
 
 data class PopulationContext(val width: Int,
                              val height: Int,
                              val geneCount: Int = 128,
                              val populationCount: Int = 20,
-                             val mutationProbability: Probability = StaticProbability(0.01f),
-                             val allowedShapes: Array<ShapeType> = arrayOf(ShapeType.ELLIPSE, ShapeType.RECTANGLE),
+                             val mutationProbability: Probability = StaticProbability(
+                                 0.01f
+                             ),
+                             val allowedShapes: Array<ShapeType> = arrayOf(
+                                 ShapeType.ELLIPSE,
+                                 ShapeType.RECTANGLE
+                             ),
                              val maxPolygonSize: Int = 5,
                              val pixelSize: Int = 8,
                              val useAlpha: Boolean = true) {

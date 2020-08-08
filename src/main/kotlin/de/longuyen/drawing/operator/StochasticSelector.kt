@@ -1,5 +1,6 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.operator
 
+import de.longuyen.drawing.Chromosome
 import java.util.*
 
 class StochasticSelector : Selector {
