@@ -105,7 +105,7 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>de.longuyen.poc.PopulationBasedGeneticDraw</mainClass>
+                            <mainClass>de.longuyen.drawing.poc.PopulationBasedGeneticDraw</mainClass>
                         </manifest>
                     </archive>
 
