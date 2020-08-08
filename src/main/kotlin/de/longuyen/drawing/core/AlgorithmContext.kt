@@ -19,6 +19,7 @@ data class AlgorithmContext(
     val crossOver: CrossOver,
     val costFunction: CostFunction,
     val selector: Selector) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -34,6 +35,9 @@ data class AlgorithmContext(
         if (maxPolygonSize != other.maxPolygonSize) return false
         if (pixelSize != other.pixelSize) return false
         if (useAlpha != other.useAlpha) return false
+        if (crossOver != other.crossOver) return false
+        if (costFunction != other.costFunction) return false
+        if (selector != other.selector) return false
 
         return true
     }
@@ -48,6 +52,9 @@ data class AlgorithmContext(
         result = 31 * result + maxPolygonSize
         result = 31 * result + pixelSize
         result = 31 * result + useAlpha.hashCode()
+        result = 31 * result + crossOver.hashCode()
+        result = 31 * result + costFunction.hashCode()
+        result = 31 * result + selector.hashCode()
         return result
     }
 }

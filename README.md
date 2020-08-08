@@ -1,5 +1,9 @@
 # Results
 
+### Shakespeare Monkeys
+
+### Images Approximation
+
 <table border="1" width="100%">
     <tr>
         <td><img src="images/021-naruto.png" width="250"></td>
