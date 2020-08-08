@@ -5,11 +5,10 @@ import java.awt.Color
 import java.awt.Graphics
 
 class Pixel(override var color: IntArray,
-                var x: Int,
-                var y: Int,
-                override var z: Int,
-                var dim: Int) : Shape {
-    override val type: ShapeType = ShapeType.PIXEL
+            var x: Int,
+            var y: Int,
+            override var z: Int,
+            private var dim: Int) : Shape {
 
     override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
         if (algorithmContext.useAlpha) {

@@ -8,7 +8,6 @@ class Polygon(override var color: IntArray,
               var x: IntArray,
               var y: IntArray,
               override var z: Int) : Shape {
-    override val type: ShapeType = ShapeType.POLYGON
 
     override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
         if (algorithmContext.useAlpha) {

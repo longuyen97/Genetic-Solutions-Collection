@@ -29,8 +29,8 @@ class PopulationBasedGeneticDraw(filename: String) {
         populationCount = 15,
         mutationProbability = UniformProbability(0.001f, 0.01f),
         allowedShapes = arrayOf(
-            ShapeType.CIRCLE,
-            ShapeType.ELLIPSE
+            Circle::class.java.simpleName,
+            Ellipse::class.java.simpleName
         ),
         maxPolygonSize = 3,
         useAlpha = true,

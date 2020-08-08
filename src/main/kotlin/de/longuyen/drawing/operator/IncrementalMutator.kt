@@ -3,6 +3,7 @@ package de.longuyen.drawing.operator
 import de.longuyen.drawing.Genetic
 import de.longuyen.drawing.AlgorithmContext
 import de.longuyen.drawing.shape.*
+import java.lang.IllegalArgumentException
 import java.util.*
 
 class IncrementalMutator(private val algorithmContext: AlgorithmContext) : Mutator {
@@ -23,14 +24,15 @@ class IncrementalMutator(private val algorithmContext: AlgorithmContext) : Mutat
 
     override fun mutate(gene: Shape, probability: Float): Shape {
         if (random.nextDouble() > probability) { return gene }
-
-        when (gene.type) {
-            ShapeType.RECTANGLE -> return mutateRectangle(gene as Rectangle)
-            ShapeType.ELLIPSE -> return mutateEllipse(gene as Ellipse)
-            ShapeType.POLYGON -> return mutatePolygon(gene as Polygon)
-            ShapeType.PIXEL -> return mutatePixel(gene as Pixel)
-            ShapeType.CIRCLE -> return mutateCircle(gene as Circle)
+        val name = gene.javaClass.simpleName
+        when (name) {
+            Rectangle::class.java.simpleName -> return mutateRectangle(gene as Rectangle)
+            Ellipse::class.java.simpleName -> return mutateEllipse(gene as Ellipse)
+            Polygon::class.java.simpleName -> return mutatePolygon(gene as Polygon)
+            Pixel::class.java.simpleName -> return mutatePixel(gene as Pixel)
+            Circle::class.java.simpleName -> return mutateCircle(gene as Circle)
         }
+        throw IllegalArgumentException("Shape is not allowed: $name")
     }
 
     private fun mutatePixel(gene: Pixel): Pixel {

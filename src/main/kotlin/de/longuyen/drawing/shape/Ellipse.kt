@@ -10,7 +10,6 @@ class Ellipse(override var color: IntArray,
               override var z: Int,
               var w: Int,
               var h: Int) : Shape {
-    override val type: ShapeType = ShapeType.ELLIPSE
 
     override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
         if (algorithmContext.useAlpha) {

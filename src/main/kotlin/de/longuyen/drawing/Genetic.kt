@@ -3,6 +3,7 @@ package de.longuyen.drawing
 import de.longuyen.drawing.shape.*
 import java.awt.Color
 import java.awt.Graphics
+import java.lang.IllegalArgumentException
 import java.util.*
 
 class Genetic(private val algorithmContext: AlgorithmContext) {
@@ -49,13 +50,15 @@ class Genetic(private val algorithmContext: AlgorithmContext) {
 
     private fun newShape(): Shape {
         val shapeIndex = random.nextInt(algorithmContext.allowedShapes.size)
-        when (algorithmContext.allowedShapes[shapeIndex]) {
-            ShapeType.RECTANGLE -> return newRectangle()
-            ShapeType.ELLIPSE -> return newEllipse()
-            ShapeType.POLYGON -> return newPolygon()
-            ShapeType.PIXEL -> return newPixel()
-            ShapeType.CIRCLE -> return newCircle()
+        val name = algorithmContext.allowedShapes[shapeIndex]
+        when (name) {
+            Rectangle::class.java.simpleName -> return newRectangle()
+            Ellipse::class.java.simpleName -> return newEllipse()
+            Polygon::class.java.simpleName -> return newPolygon()
+            Pixel::class.java.simpleName -> return newPixel()
+            Circle::class.java.simpleName -> return newCircle()
         }
+        throw IllegalArgumentException("Shape is not allowed: $name")
     }
 
     private fun newPolygon(): Polygon {

@@ -6,15 +6,14 @@ import java.awt.Graphics
 class Circle(override var color: IntArray,
               var x: Int,
               var y: Int,
-             override var z: Int,
+              override var z: Int,
               var r: Int) : Shape {
-    override val type: ShapeType = ShapeType.CIRCLE
 
     override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
         if (algorithmContext.useAlpha) {
-            g.color = Color(color.get(0), color.get(1), color.get(2), color.get(3))
+            g.color = Color(color[0], color[1], color[2], color[3])
         } else {
-            g.color = Color(color.get(0), color.get(1), color.get(2))
+            g.color = Color(color[0], color[1], color[2])
         }
         g.fillOval(x, y, r, r)
     }

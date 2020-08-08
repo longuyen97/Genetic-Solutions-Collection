@@ -2,24 +2,23 @@ package de.longuyen.drawing
 
 import de.longuyen.drawing.costs.CostFunction
 import de.longuyen.drawing.operator.CrossOver
-import de.longuyen.drawing.operator.Mutator
 import de.longuyen.drawing.operator.Probability
 import de.longuyen.drawing.operator.Selector
-import de.longuyen.drawing.shape.ShapeType
 
 
-data class AlgorithmContext(val width: Int,
-                            val height: Int,
-                            val geneCount: Int,
-                            val populationCount: Int,
-                            val mutationProbability: Probability,
-                            val allowedShapes: Array<ShapeType>,
-                            val maxPolygonSize: Int,
-                            val pixelSize: Int,
-                            val useAlpha: Boolean,
-                            val crossOver: CrossOver,
-                            val costFunction: CostFunction,
-                            val selector: Selector) {
+data class AlgorithmContext(
+    val width: Int,
+    val height: Int,
+    val geneCount: Int,
+    val populationCount: Int,
+    val mutationProbability: Probability,
+    val allowedShapes: Array<String>,
+    val maxPolygonSize: Int,
+    val pixelSize: Int,
+    val useAlpha: Boolean,
+    val crossOver: CrossOver,
+    val costFunction: CostFunction,
+    val selector: Selector) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
