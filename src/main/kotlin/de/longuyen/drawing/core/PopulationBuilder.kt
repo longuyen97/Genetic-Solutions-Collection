@@ -1,4 +1,4 @@
-package de.longuyen.drawing
+package de.longuyen.drawing.core
 
 import de.longuyen.drawing.shape.*
 import java.awt.Color
@@ -6,7 +6,7 @@ import java.awt.Graphics
 import java.lang.IllegalArgumentException
 import java.util.*
 
-class Genetic(private val algorithmContext: AlgorithmContext) {
+class PopulationBuilder(private val algorithmContext: AlgorithmContext) {
     private val random = Random()
 
     private fun newIndividual(): Chromosome {

@@ -1,5 +1,5 @@
 package de.longuyen.drawing.shape
-import de.longuyen.drawing.AlgorithmContext
+import de.longuyen.drawing.core.AlgorithmContext
 import java.awt.Graphics
 
 interface Shape {

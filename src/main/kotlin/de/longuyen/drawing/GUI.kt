@@ -1,6 +1,9 @@
 package de.longuyen.drawing
 
 
+import de.longuyen.drawing.core.AlgorithmContext
+import de.longuyen.drawing.core.Chromosome
+import de.longuyen.drawing.core.PopulationBuilder
 import de.longuyen.drawing.costs.ImageDifference
 import de.longuyen.drawing.operator.RandomCrossOver
 import de.longuyen.drawing.operator.UniformProbability
@@ -40,7 +43,7 @@ class GUI(filename: String) {
     )
 
     private val mutator = RandomMutator(context)
-    val genetic = Genetic(context)
+    val genetic = PopulationBuilder(context)
 
     private val decodedImage: JPanel
     private val targetImage: JPanel

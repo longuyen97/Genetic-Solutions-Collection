@@ -1,4 +1,4 @@
-package de.longuyen.drawing
+package de.longuyen.drawing.core
 
 import de.longuyen.drawing.costs.CostFunction
 import de.longuyen.drawing.operator.CrossOver

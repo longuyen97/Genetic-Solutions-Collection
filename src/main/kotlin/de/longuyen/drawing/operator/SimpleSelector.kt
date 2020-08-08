@@ -1,6 +1,6 @@
 package de.longuyen.drawing.operator
 
-import de.longuyen.drawing.Chromosome
+import de.longuyen.drawing.core.Chromosome
 import java.util.*
 
 class SimpleSelector : Selector {

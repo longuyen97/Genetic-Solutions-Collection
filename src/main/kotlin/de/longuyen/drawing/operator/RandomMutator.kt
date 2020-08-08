@@ -1,14 +1,14 @@
 package de.longuyen.drawing.operator
 
-import de.longuyen.drawing.Genetic
-import de.longuyen.drawing.AlgorithmContext
+import de.longuyen.drawing.core.PopulationBuilder
+import de.longuyen.drawing.core.AlgorithmContext
 import de.longuyen.drawing.shape.*
 import java.lang.IllegalArgumentException
 import java.util.*
 
 class RandomMutator(private val algorithmContext: AlgorithmContext) : Mutator {
     private val random = Random()
-    private val genetic = Genetic(algorithmContext)
+    private val genetic = PopulationBuilder(algorithmContext)
 
     // for moving/size
     private val maxDelta = ((algorithmContext.width + algorithmContext.height) / 2) / 2
