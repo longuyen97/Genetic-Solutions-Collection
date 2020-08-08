@@ -19,7 +19,7 @@ import javax.swing.JFrame
 import javax.swing.JPanel
 import javax.swing.WindowConstants
 
-class PopulationBasedGeneticDraw(filename: String) {
+class GUI(filename: String) {
     private val target: BufferedImage = ImageIO.read(File(filename))
     val context = AlgorithmContext(
         width = target.width,
