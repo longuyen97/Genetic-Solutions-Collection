@@ -6,7 +6,7 @@ import de.longuyen.drawing.shape.*
 import java.lang.IllegalArgumentException
 import java.util.*
 
-class IncrementalMutator(private val algorithmContext: AlgorithmContext) : Mutator {
+class RandomMutator(private val algorithmContext: AlgorithmContext) : Mutator {
     private val random = Random()
     private val genetic = Genetic(algorithmContext)
 

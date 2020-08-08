@@ -3,7 +3,7 @@ package de.longuyen.drawing.operator
 import de.longuyen.drawing.Chromosome
 import java.util.*
 
-class StochasticSelector : Selector {
+class SimpleSelector : Selector {
     private val random = Random()
 
     /**

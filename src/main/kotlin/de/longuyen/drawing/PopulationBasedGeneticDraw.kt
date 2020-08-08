@@ -4,8 +4,8 @@ package de.longuyen.drawing
 import de.longuyen.drawing.costs.ImageDifference
 import de.longuyen.drawing.operator.RandomCrossOver
 import de.longuyen.drawing.operator.UniformProbability
-import de.longuyen.drawing.operator.IncrementalMutator
-import de.longuyen.drawing.operator.StochasticSelector
+import de.longuyen.drawing.operator.RandomMutator
+import de.longuyen.drawing.operator.SimpleSelector
 import de.longuyen.drawing.shape.*
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.XChartPanel
@@ -36,10 +36,10 @@ class PopulationBasedGeneticDraw(filename: String) {
         useAlpha = true,
         crossOver = RandomCrossOver(),
         costFunction = ImageDifference(target, 4),
-        selector = StochasticSelector()
+        selector = SimpleSelector()
     )
 
-    private val mutator = IncrementalMutator(context)
+    private val mutator = RandomMutator(context)
     val genetic = Genetic(context)
 
     private val decodedImage: JPanel
