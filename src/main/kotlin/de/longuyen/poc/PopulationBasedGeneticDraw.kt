@@ -17,18 +17,22 @@ import javax.swing.JPanel
 import javax.swing.WindowConstants
 
 
-fun main() {
-    PopulationBasedGeneticDraw().run()
+fun main(args: Array<String>) {
+    if(args.size > 0) {
+        PopulationBasedGeneticDraw(args[0]).run()
+    }else{
+        PopulationBasedGeneticDraw("images/darwin.jpg").run()
+    }
 }
 
-class PopulationBasedGeneticDraw {
+class PopulationBasedGeneticDraw(filename: String) {
     val random = Random()
-    private val target: BufferedImage = ImageIO.read(File("images/saitama.jpg"))
+    private val target: BufferedImage = ImageIO.read(File(filename))
     val context = PopulationContext(
         width = target.width,
         height = target.height,
-        geneCount = 5000,
-        populationCount = 25,
+        geneCount = 750,
+        populationCount = 15,
         mutationProbability = DynamicRangeProbability(0.001f, 0.01f),
         allowedShapes = arrayOf(
             ShapeType.RECTANGLE,
@@ -44,7 +48,7 @@ class PopulationBasedGeneticDraw {
     private val mutator = IncrementalMutator(context)
     val genetic = Genetic(context)
     private val crossOver = CrossOver()
-    private val fitnessFunction = ConstraintedImageDifference(target, 4, Rectangle(142, 58, 150, 230))
+    private val fitnessFunction = ImageDifference(target, 4)
     private val selector = StochasticSelector()
 
     private val decodedImage: JPanel

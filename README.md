@@ -13,6 +13,15 @@
     </tr>
 </table>
 
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/027-banksy.png" width="250"></td>
+    </tr>
+    <tr>
+        <td><img src="images/028-banksy.gif" width="250"></td>
+    </tr>
+</table>
+
 # Genetic algorithms
 
 Genetic Algorithm (GA) is a search-based optimization technique based on the principles of Genetics and Natural Selection. 
