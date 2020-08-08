@@ -43,7 +43,7 @@ class GUI(filename: String) {
     )
 
     private val mutator = Mutator(context)
-    val genetic = PopulationBuilder(context)
+    val populationBuilder = PopulationBuilder(context)
 
     private val decodedImage: JPanel
     private val targetImage: JPanel
@@ -52,10 +52,9 @@ class GUI(filename: String) {
     private val chartPanel : XChartPanel<XYChart>
     val mostFitCanvas: BufferedImage = BufferedImage(context.width, context.height, BufferedImage.TYPE_INT_ARGB)
     val mostFitCanvasGraphics: Graphics = mostFitCanvas.graphics
-    var population = genetic.newPopulation()
-    val saveOutput = true
+    var population = populationBuilder.newPopulation()
     val saveOutputFrequency = 20
-    var generation = 0
+    var currentGeneration = 0
     private val generateList = mutableListOf(0.0)
     private val costList = mutableListOf(0.0)
 
@@ -70,11 +69,11 @@ class GUI(filename: String) {
         decodedImage = object : JPanel() {
             override fun paintComponent(g: Graphics) {
                 super.paintComponent(g)
-                genetic.expressDna(mostFitCanvasGraphics, population.first())
+                populationBuilder.expressDna(mostFitCanvasGraphics, population.first())
                 g.drawImage(mostFitCanvas, 0, 0, context.width, context.height, this)
 
-                if (saveOutput && (generation % saveOutputFrequency == 0)) {
-                    ImageIO.write(mostFitCanvas, "png", File("target/evolved_$generation.png"))
+                if (currentGeneration % saveOutputFrequency == 0) {
+                    ImageIO.write(mostFitCanvas, "png", File("target/evolved_$currentGeneration.png"))
                 }
             }
         }
@@ -106,9 +105,9 @@ class GUI(filename: String) {
         costList.removeAt(0)
         do {
             population = evaluateFitness(population)
-            generateList.add(generation.toDouble())
+            generateList.add(currentGeneration.toDouble())
             costList.add(population.first().fitness)
-            if(generation % 10 == 0) {
+            if(currentGeneration % 10 == 0) {
                 chart.updateXYSeries("cost", generateList, costList, null)
             }
             chartPanel.revalidate()
@@ -118,7 +117,7 @@ class GUI(filename: String) {
             decodedImage.repaint()
             imagesPanel.revalidate()
             population = buildNextGeneration(population)
-            generation++
+            currentGeneration++
         } while (population.first().fitness > 0)
         ImageIO.write(mostFitCanvas, "png", File("target/evolved.png"))
     }
@@ -142,7 +141,7 @@ class GUI(filename: String) {
         population.parallelStream().forEach() { chromosome ->
             val canvas = BufferedImage(context.width, context.height, BufferedImage.TYPE_INT_ARGB)
             val canvasGraphics: Graphics = canvas.graphics
-            genetic.expressDna(canvasGraphics, chromosome)
+            populationBuilder.expressDna(canvasGraphics, chromosome)
             chromosome.fitness = context.costFunction.compare(canvas)
         }
         return population.sortedBy { individual -> individual.fitness }
