@@ -4,21 +4,23 @@
     <tr>
         <td><img src="images/021-naruto.png" width="250"></td>
         <td><img src="images/023-racoon.png" width="250"></td>
-        <td><img src="images/025-saitama.png" width="250"></td>
+        <td><img src="images/029-steve.png" width="250"></td>
     </tr>
     <tr>
         <td><img src="images/022-naruto.gif" width="250"></td>
         <td><img src="images/024-racoon.gif" width="250"></td>
-        <td><img src="images/026-saitama.gif" width="250"></td>
+        <td><img src="images/030-steve.gif" width="250"></td>
     </tr>
 </table>
 
 <table border="1" width="100%">
     <tr>
         <td><img src="images/027-banksy.png" width="250"></td>
+        <td><img src="images/025-saitama.png" width="250"></td>
     </tr>
     <tr>
         <td><img src="images/028-banksy.gif" width="250"></td>
+        <td><img src="images/026-saitama.gif" width="250"></td>
     </tr>
 </table>
 

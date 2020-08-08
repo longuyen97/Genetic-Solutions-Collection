@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
     if(args.size > 0) {
         PopulationBasedGeneticDraw(args[0]).run()
     }else{
-        PopulationBasedGeneticDraw("images/darwin.jpg").run()
+        PopulationBasedGeneticDraw("images/steve.png").run()
     }
 }
 
@@ -36,9 +36,6 @@ class PopulationBasedGeneticDraw(filename: String) {
         mutationProbability = DynamicRangeProbability(0.001f, 0.01f),
         allowedShapes = arrayOf(
             ShapeType.RECTANGLE,
-            ShapeType.ELLIPSE,
-            ShapeType.CIRCLE,
-            ShapeType.POLYGON,
             ShapeType.PIXEL
         ),
         maxPolygonSize = 3,
