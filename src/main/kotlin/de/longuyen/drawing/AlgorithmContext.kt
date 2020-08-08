@@ -1,30 +1,30 @@
 package de.longuyen.drawing
 
+import de.longuyen.drawing.costs.CostFunction
+import de.longuyen.drawing.operator.CrossOver
+import de.longuyen.drawing.operator.Mutator
 import de.longuyen.drawing.operator.Probability
+import de.longuyen.drawing.operator.Selector
 import de.longuyen.drawing.shape.ShapeType
-import de.longuyen.drawing.operator.StaticProbability
 
 
-data class PopulationContext(val width: Int,
-                             val height: Int,
-                             val geneCount: Int = 128,
-                             val populationCount: Int = 20,
-                             val mutationProbability: Probability = StaticProbability(
-                                 0.01f
-                             ),
-                             val allowedShapes: Array<ShapeType> = arrayOf(
-                                 ShapeType.ELLIPSE,
-                                 ShapeType.RECTANGLE
-                             ),
-                             val maxPolygonSize: Int = 5,
-                             val pixelSize: Int = 8,
-                             val useAlpha: Boolean = true) {
-
+data class AlgorithmContext(val width: Int,
+                            val height: Int,
+                            val geneCount: Int,
+                            val populationCount: Int,
+                            val mutationProbability: Probability,
+                            val allowedShapes: Array<ShapeType>,
+                            val maxPolygonSize: Int,
+                            val pixelSize: Int,
+                            val useAlpha: Boolean,
+                            val crossOver: CrossOver,
+                            val costFunction: CostFunction,
+                            val selector: Selector) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as PopulationContext
+        other as AlgorithmContext
 
         if (width != other.width) return false
         if (height != other.height) return false

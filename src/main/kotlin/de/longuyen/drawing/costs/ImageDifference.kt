@@ -4,7 +4,7 @@ import java.awt.Color
 import java.awt.image.BufferedImage
 import kotlin.math.abs
 
-class ImageDifference(private val b1: BufferedImage, private val stepSize: Int) {
+class ImageDifference(private val b1: BufferedImage, private val stepSize: Int)  : CostFunction{
     private val reds: Array<DoubleArray> = Array(b1.height) { _ -> DoubleArray(b1.width) { _ -> (0.0)} }
     private val greens: Array<DoubleArray> = Array(b1.height) { _ -> DoubleArray(b1.width) { _ -> (0.0)} }
     private val blues: Array<DoubleArray> = Array(b1.height) { _ -> DoubleArray(b1.width) { _ -> (0.0)} }
@@ -26,7 +26,7 @@ class ImageDifference(private val b1: BufferedImage, private val stepSize: Int) 
         }
     }
 
-    fun compare(bi2: BufferedImage): Double {
+    override fun compare(bi2: BufferedImage): Double {
         var error = 0.0
         (0 until b1.height step stepSize).forEach { y ->
             (0 until b1.width step stepSize).forEach { x ->

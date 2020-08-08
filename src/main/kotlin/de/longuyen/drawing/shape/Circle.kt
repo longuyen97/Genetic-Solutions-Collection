@@ -1,5 +1,5 @@
 package de.longuyen.drawing.shape
-import de.longuyen.drawing.PopulationContext
+import de.longuyen.drawing.AlgorithmContext
 import java.awt.Color
 import java.awt.Graphics
 
@@ -10,8 +10,8 @@ class Circle(override var color: IntArray,
               var r: Int) : Shape {
     override val type: ShapeType = ShapeType.CIRCLE
 
-    override fun draw(g: Graphics, populationContext: PopulationContext) {
-        if (populationContext.useAlpha) {
+    override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
+        if (algorithmContext.useAlpha) {
             g.color = Color(color.get(0), color.get(1), color.get(2), color.get(3))
         } else {
             g.color = Color(color.get(0), color.get(1), color.get(2))

@@ -2,8 +2,8 @@ package de.longuyen.drawing
 
 
 import de.longuyen.drawing.costs.ImageDifference
-import de.longuyen.drawing.operator.CrossOver
-import de.longuyen.drawing.operator.DynamicRangeProbability
+import de.longuyen.drawing.operator.RandomCrossOver
+import de.longuyen.drawing.operator.UniformProbability
 import de.longuyen.drawing.operator.IncrementalMutator
 import de.longuyen.drawing.operator.StochasticSelector
 import de.longuyen.drawing.shape.*
@@ -21,25 +21,26 @@ import javax.swing.WindowConstants
 
 class PopulationBasedGeneticDraw(filename: String) {
     private val target: BufferedImage = ImageIO.read(File(filename))
-    val context = PopulationContext(
+    val context = AlgorithmContext(
         width = target.width,
         height = target.height,
+        pixelSize = 8,
         geneCount = 1000,
         populationCount = 15,
-        mutationProbability = DynamicRangeProbability(0.001f, 0.01f),
+        mutationProbability = UniformProbability(0.001f, 0.01f),
         allowedShapes = arrayOf(
             ShapeType.CIRCLE,
             ShapeType.ELLIPSE
         ),
         maxPolygonSize = 3,
-        useAlpha = true
+        useAlpha = true,
+        crossOver = RandomCrossOver(),
+        costFunction = ImageDifference(target, 4),
+        selector = StochasticSelector()
     )
 
     private val mutator = IncrementalMutator(context)
     val genetic = Genetic(context)
-    private val crossOver = CrossOver()
-    private val fitnessFunction = ImageDifference(target, 4)
-    private val selector = StochasticSelector()
 
     private val decodedImage: JPanel
     private val targetImage: JPanel
@@ -51,9 +52,9 @@ class PopulationBasedGeneticDraw(filename: String) {
     var population = genetic.newPopulation()
     val saveOutput = true
     val saveOutputFrequency = 20
-    var i = 0
-    private val epochs = mutableListOf(0.0)
-    private val differences = mutableListOf(0.0)
+    var generation = 0
+    private val generateList = mutableListOf(0.0)
+    private val costList = mutableListOf(0.0)
 
     init {
         val frame = JFrame("Population based genetic approximation")
@@ -69,8 +70,8 @@ class PopulationBasedGeneticDraw(filename: String) {
                 genetic.expressDna(mostFitCanvasGraphics, population.first())
                 g.drawImage(mostFitCanvas, 0, 0, context.width, context.height, this)
 
-                if (saveOutput && (i % saveOutputFrequency == 0)) {
-                    ImageIO.write(mostFitCanvas, "png", File("target/evolved_$i.png"))
+                if (saveOutput && (generation % saveOutputFrequency == 0)) {
+                    ImageIO.write(mostFitCanvas, "png", File("target/evolved_$generation.png"))
                 }
             }
         }
@@ -89,7 +90,7 @@ class PopulationBasedGeneticDraw(filename: String) {
         decodedImage.setSize(target.width, target.height)
         mainFrameContainer.add(imagesPanel)
 
-        chart = QuickChart.getChart("Population's best fitness", "Epochs", "Cost", "cost", epochs, differences)
+        chart = QuickChart.getChart("Population's best fitness", "Epochs", "Cost", "cost", generateList, costList)
         chartPanel = XChartPanel(chart)
         mainFrameContainer.add(chartPanel)
         decodedImage.revalidate()
@@ -98,14 +99,14 @@ class PopulationBasedGeneticDraw(filename: String) {
     }
 
     fun run() {
-        epochs.removeAt(0)
-        differences.removeAt(0)
+        generateList.removeAt(0)
+        costList.removeAt(0)
         do {
             population = evaluateFitness(population)
-            epochs.add(i.toDouble())
-            differences.add(population.first().fitness)
-            if(i % 10 == 0) {
-                chart.updateXYSeries("cost", epochs, differences, null)
+            generateList.add(generation.toDouble())
+            costList.add(population.first().fitness)
+            if(generation % 10 == 0) {
+                chart.updateXYSeries("cost", generateList, costList, null)
             }
             chartPanel.revalidate()
             chartPanel.repaint()
@@ -114,7 +115,7 @@ class PopulationBasedGeneticDraw(filename: String) {
             decodedImage.repaint()
             imagesPanel.revalidate()
             population = buildNextGeneration(population)
-            i++
+            generation++
         } while (population.first().fitness > 0)
         ImageIO.write(mostFitCanvas, "png", File("target/evolved.png"))
     }
@@ -126,9 +127,9 @@ class PopulationBasedGeneticDraw(filename: String) {
         nextGeneration.add(population.first())
 
         while (nextGeneration.size < population.size) {
-            val one = selector.select(population)
-            val two = selector.select(population)
-            nextGeneration.add(crossOver.perform(Pair(one, two), mutator, context.mutationProbability.next()))
+            val one = context.selector.select(population)
+            val two = context.selector.select(population)
+            nextGeneration.add(context.crossOver.perform(Pair(one, two), mutator, context.mutationProbability.next()))
         }
 
         return nextGeneration
@@ -139,7 +140,7 @@ class PopulationBasedGeneticDraw(filename: String) {
             val canvas = BufferedImage(context.width, context.height, BufferedImage.TYPE_INT_ARGB)
             val canvasGraphics: Graphics = canvas.graphics
             genetic.expressDna(canvasGraphics, chromosome)
-            chromosome.fitness = fitnessFunction.compare(canvas)
+            chromosome.fitness = context.costFunction.compare(canvas)
         }
         return population.sortedBy { individual -> individual.fitness }
     }

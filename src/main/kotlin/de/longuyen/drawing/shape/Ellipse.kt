@@ -1,6 +1,6 @@
 package de.longuyen.drawing.shape
 
-import de.longuyen.drawing.PopulationContext
+import de.longuyen.drawing.AlgorithmContext
 import java.awt.Color
 import java.awt.Graphics
 
@@ -12,8 +12,8 @@ class Ellipse(override var color: IntArray,
               var h: Int) : Shape {
     override val type: ShapeType = ShapeType.ELLIPSE
 
-    override fun draw(g: Graphics, populationContext: PopulationContext) {
-        if (populationContext.useAlpha) {
+    override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
+        if (algorithmContext.useAlpha) {
             g.color = Color(color[0], color[1], color[2], color[3])
         } else {
             g.color = Color(color[0], color[1], color[2])
