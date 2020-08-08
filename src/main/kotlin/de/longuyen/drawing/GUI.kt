@@ -5,11 +5,11 @@ import de.longuyen.drawing.core.AlgorithmContext
 import de.longuyen.drawing.core.Chromosome
 import de.longuyen.drawing.core.PopulationBuilder
 import de.longuyen.drawing.costs.ImageDifference
-import de.longuyen.drawing.operator.RandomCrossOver
-import de.longuyen.drawing.operator.UniformProbability
-import de.longuyen.drawing.operator.RandomMutator
-import de.longuyen.drawing.operator.SimpleSelector
-import de.longuyen.drawing.shape.*
+import de.longuyen.drawing.operators.CrossOver
+import de.longuyen.drawing.operators.Probability
+import de.longuyen.drawing.operators.Mutator
+import de.longuyen.drawing.operators.Selector
+import de.longuyen.drawing.shapes.*
 import org.knowm.xchart.QuickChart
 import org.knowm.xchart.XChartPanel
 import org.knowm.xchart.XYChart
@@ -30,19 +30,19 @@ class GUI(filename: String) {
         pixelSize = 8,
         geneCount = 1000,
         populationCount = 15,
-        mutationProbability = UniformProbability(0.001f, 0.01f),
+        mutationProbability = Probability(0.001f, 0.01f),
         allowedShapes = arrayOf(
             Circle::class.java.simpleName,
             Ellipse::class.java.simpleName
         ),
         maxPolygonSize = 3,
         useAlpha = true,
-        crossOver = RandomCrossOver(),
+        crossOver = CrossOver(),
         costFunction = ImageDifference(target, 4),
-        selector = SimpleSelector()
+        selector = Selector()
     )
 
-    private val mutator = RandomMutator(context)
+    private val mutator = Mutator(context)
     val genetic = PopulationBuilder(context)
 
     private val decodedImage: JPanel

@@ -1,7 +1,7 @@
-package de.longuyen.drawing.operator
+package de.longuyen.drawing.operators
 
 import de.longuyen.drawing.core.Chromosome
 
-interface Selector {
+interface ISelector {
     fun select(population: List<Chromosome>): Chromosome
 }

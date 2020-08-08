@@ -1,12 +1,12 @@
-package de.longuyen.drawing.operator
+package de.longuyen.drawing.operators
 
 import de.longuyen.drawing.core.PopulationBuilder
 import de.longuyen.drawing.core.AlgorithmContext
-import de.longuyen.drawing.shape.*
+import de.longuyen.drawing.shapes.*
 import java.lang.IllegalArgumentException
 import java.util.*
 
-class RandomMutator(private val algorithmContext: AlgorithmContext) : Mutator {
+class Mutator(private val algorithmContext: AlgorithmContext) : IMutator {
     private val random = Random()
     private val genetic = PopulationBuilder(algorithmContext)
 

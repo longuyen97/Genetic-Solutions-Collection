@@ -1,9 +1,9 @@
-package de.longuyen.drawing.operator
+package de.longuyen.drawing.operators
 
 import de.longuyen.drawing.core.Chromosome
 import java.util.*
 
-class SimpleSelector : Selector {
+class Selector : ISelector {
     private val random = Random()
 
     /**

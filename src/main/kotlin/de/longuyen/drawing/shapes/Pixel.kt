@@ -1,15 +1,14 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.shapes
 
 import de.longuyen.drawing.core.AlgorithmContext
 import java.awt.Color
 import java.awt.Graphics
 
-class Ellipse(override var color: IntArray,
-              var x: Int,
-              var y: Int,
-              override var z: Int,
-              var w: Int,
-              var h: Int) : Shape {
+class Pixel(override var color: IntArray,
+            var x: Int,
+            var y: Int,
+            override var z: Int,
+            private var dim: Int) : Shape {
 
     override fun draw(g: Graphics, algorithmContext: AlgorithmContext) {
         if (algorithmContext.useAlpha) {
@@ -17,17 +16,16 @@ class Ellipse(override var color: IntArray,
         } else {
             g.color = Color(color[0], color[1], color[2])
         }
-        g.fillOval(x, y, w, h)
+        g.fillRect(x, y, dim, dim)
     }
 
-    override fun copy(): Ellipse {
-        return Ellipse(
+    override fun copy(): Pixel {
+        return Pixel(
                 color = color.copyOf(),
                 x = x,
                 y = y,
                 z = z,
-                w = w,
-                h = h
+                dim = dim
         )
     }
 }

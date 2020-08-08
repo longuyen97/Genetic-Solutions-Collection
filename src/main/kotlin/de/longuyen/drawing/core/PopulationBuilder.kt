@@ -1,6 +1,6 @@
 package de.longuyen.drawing.core
 
-import de.longuyen.drawing.shape.*
+import de.longuyen.drawing.shapes.*
 import java.awt.Color
 import java.awt.Graphics
 import java.lang.IllegalArgumentException

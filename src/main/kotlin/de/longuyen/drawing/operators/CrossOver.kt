@@ -1,16 +1,16 @@
-package de.longuyen.drawing.operator
+package de.longuyen.drawing.operators
 
 import de.longuyen.drawing.core.Chromosome
-import de.longuyen.drawing.shape.Shape
+import de.longuyen.drawing.shapes.Shape
 import java.util.*
 
-class RandomCrossOver : CrossOver{
+class CrossOver : ICrossOver{
     private val random = Random()
 
     /**
      * Mating two chromosomes to produce a new one
      */
-    override fun perform(pair: Pair<Chromosome, Chromosome>, mutator: Mutator, mutationProbability: Float) : Chromosome {
+    override fun perform(pair: Pair<Chromosome, Chromosome>, mutator: IMutator, mutationProbability: Float) : Chromosome {
         val dnaLength = pair.first.dna.size
         val genes = mutableListOf<Shape>()
         (0 until dnaLength).forEach { i ->

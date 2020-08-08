@@ -1,4 +1,4 @@
-package de.longuyen.drawing.shape
+package de.longuyen.drawing.shapes
 import de.longuyen.drawing.core.AlgorithmContext
 import java.awt.Graphics
 

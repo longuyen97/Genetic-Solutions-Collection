@@ -1,8 +1,8 @@
-package de.longuyen.drawing.operator
+package de.longuyen.drawing.operators
 
 import java.util.*
 
-class UniformProbability(private val min: Float, private val max: Float): Probability {
+class Probability(private val min: Float, private val max: Float): IProbability {
     private val random = Random()
 
     override fun next(): Float {

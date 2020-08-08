@@ -1,9 +1,9 @@
 package de.longuyen.drawing.core
 
 import de.longuyen.drawing.costs.CostFunction
-import de.longuyen.drawing.operator.CrossOver
-import de.longuyen.drawing.operator.Probability
-import de.longuyen.drawing.operator.Selector
+import de.longuyen.drawing.operators.ICrossOver
+import de.longuyen.drawing.operators.IProbability
+import de.longuyen.drawing.operators.ISelector
 
 
 data class AlgorithmContext(
@@ -11,14 +11,14 @@ data class AlgorithmContext(
     val height: Int,
     val geneCount: Int,
     val populationCount: Int,
-    val mutationProbability: Probability,
+    val mutationProbability: IProbability,
     val allowedShapes: Array<String>,
     val maxPolygonSize: Int,
     val pixelSize: Int,
     val useAlpha: Boolean,
-    val crossOver: CrossOver,
+    val crossOver: ICrossOver,
     val costFunction: CostFunction,
-    val selector: Selector) {
+    val selector: ISelector) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
