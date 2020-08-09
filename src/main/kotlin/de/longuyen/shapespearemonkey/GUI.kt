@@ -1,7 +1,5 @@
 package de.longuyen.shapespearemonkey
 
-import org.jfree.chart.ChartPanel
-import org.knowm.xchart.QuickChart
 import org.knowm.xchart.XChartPanel
 import org.knowm.xchart.XYChart
 import org.knowm.xchart.XYChartBuilder
