@@ -1,6 +1,11 @@
 # Results
 
 ### Shakespeare Monkeys
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/033-jfk.png" width="250"></td>
+    </tr>
+</table>
 
 ### Images Approximation
 

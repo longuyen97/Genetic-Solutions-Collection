@@ -55,7 +55,7 @@ class GUI(filename: String) {
     var population = populationBuilder.newPopulation()
     val saveOutputFrequency = 20
     var currentGeneration = 0
-    private val generateList = mutableListOf(0.0)
+    private val generationList = mutableListOf(0.0)
     private val costList = mutableListOf(0.0)
 
     init {
@@ -92,7 +92,7 @@ class GUI(filename: String) {
         decodedImage.setSize(target.width, target.height)
         mainFrameContainer.add(imagesPanel)
 
-        chart = QuickChart.getChart("Population's best fitness", "Epochs", "Cost", "cost", generateList, costList)
+        chart = QuickChart.getChart("Population's best fitness", "Epochs", "Cost", "cost", generationList, costList)
         chartPanel = XChartPanel(chart)
         mainFrameContainer.add(chartPanel)
         decodedImage.revalidate()
@@ -101,14 +101,14 @@ class GUI(filename: String) {
     }
 
     fun run() {
-        generateList.removeAt(0)
+        generationList.removeAt(0)
         costList.removeAt(0)
         do {
             population = evaluateFitness(population)
-            generateList.add(currentGeneration.toDouble())
+            generationList.add(currentGeneration.toDouble())
             costList.add(population.first().fitness)
             if(currentGeneration % 10 == 0) {
-                chart.updateXYSeries("cost", generateList, costList, null)
+                chart.updateXYSeries("cost", generationList, costList, null)
             }
             chartPanel.revalidate()
             chartPanel.repaint()

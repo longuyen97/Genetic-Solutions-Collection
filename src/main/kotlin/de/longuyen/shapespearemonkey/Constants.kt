@@ -9,6 +9,8 @@ val ALPHABET = {
         ret.add(i.toChar())
     }
     ret.add(' ')
+    ret.add(',')
+    ret.add('.')
     ret.toCharArray()
 }()
 

@@ -2,6 +2,7 @@ package de.longuyen.shapespearemonkey
 
 import java.lang.IllegalArgumentException
 import java.util.*
+import java.util.stream.IntStream
 
 class Population(private val target: String, size: Int = 100, private val mutationRate: Int = 1) {
     var chromosomes: Array<Chromosome> = Array(size) { Chromosome(target.length) }
@@ -15,17 +16,9 @@ class Population(private val target: String, size: Int = 100, private val mutati
         }
     }
 
-    fun express() : String {
-        val ret = StringBuilder()
-        for(i in chromosomes.indices){
-            ret.append("${chromosomes[i].geneExpression()} - ${chromosomes[i].fitness}\n")
-        }
-        return ret.toString()
-    }
-
     fun fitAndSort() {
-        for (i in chromosomes.indices) {
-            chromosomes[i].fit(target)
+        IntStream.range(0, chromosomes.size).parallel().forEach {
+            chromosomes[it].fit(target)
         }
         chromosomes.sortByDescending(Chromosome::fitness)
     }
