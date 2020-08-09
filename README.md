@@ -3,14 +3,14 @@
 ### Shakespeare Monkeys
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/033-jfk.png" width="250"></td>
+        <td><img src="images/033-jfk.png" width="500"></td>
     </tr>
 </table>
 
 ### Knapsack
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/034-knapsack.png" width="250"></td>
+        <td><img src="images/034-knapsack.png" width="500"></td>
     </tr>
 </table>
 
