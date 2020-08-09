@@ -1,6 +1,5 @@
 package de.longuyen.knapsack
 
-import java.lang.StringBuilder
 import java.util.*
 import java.util.stream.IntStream
 
@@ -13,12 +12,6 @@ class Population(private val context: Context) {
             chromosomes[it].fit()
         }
         chromosomes.sortByDescending(Chromosome::fitness)
-    }
-
-    fun express() : String{
-        val ret = StringBuilder()
-        ret.append("Fitness ${chromosomes.first().fitness} - Weights ${chromosomes.first().weights}")
-        return ret.toString()
     }
 
     fun evolve() {

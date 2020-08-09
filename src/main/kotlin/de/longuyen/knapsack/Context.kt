@@ -18,6 +18,14 @@ data class Context(
         itemCount = profits.size
     }
 
+    override fun toString(): String {
+        return """
+            Knapsack Problem:
+            Maximal capacity: $capacity
+            Item count: $itemCount
+        """.trimIndent()
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

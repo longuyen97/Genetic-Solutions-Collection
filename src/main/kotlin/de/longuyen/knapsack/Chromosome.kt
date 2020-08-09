@@ -1,8 +1,8 @@
 package de.longuyen.knapsack
 
 import java.lang.IllegalArgumentException
-import java.lang.StringBuilder
 import java.util.*
+import kotlin.math.ln
 
 class Chromosome(private val context: Context) {
     private val random = Random()
@@ -11,21 +11,11 @@ class Chromosome(private val context: Context) {
     var weights: Long = 0
 
     init {
+        val bias = context.itemCount * 0.1
         for(i in 0 until context.itemCount){
-            genes[i] = random.nextBoolean()
+            if(random.nextInt(context.itemCount) + bias < ln(context.capacity.toDouble()))
+            genes[i] = true
         }
-    }
-
-    fun express() : String{
-        val ret = StringBuilder()
-        for(i in genes.indices){
-            if(genes[i]){
-                ret.append("1")
-            }else{
-                ret.append("0")
-            }
-        }
-        return ret.toString()
     }
 
     fun fit(){
@@ -37,7 +27,7 @@ class Chromosome(private val context: Context) {
                 weights += context.weights[i]
                 if(weights > context.capacity){
                     fitness = 0
-                    break
+                    return
                 }
             }
         }
