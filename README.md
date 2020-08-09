@@ -7,6 +7,13 @@
     </tr>
 </table>
 
+### Knapsack
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/034-knapsack.png" width="250"></td>
+    </tr>
+</table>
+
 ### Images Approximation
 
 <table border="1" width="100%">
