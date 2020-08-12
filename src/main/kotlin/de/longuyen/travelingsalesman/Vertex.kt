@@ -1,5 +1,6 @@
 package de.longuyen.travelingsalesman
 
+import java.lang.StringBuilder
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 
@@ -53,5 +54,16 @@ class CompleteGraph(val size: Int, min: Int, max: Int){
                 distances[Edge(vertices[j], vertices[i])] = distance
             }
         }
+    }
+
+    override fun toString() : String{
+        val ret = StringBuilder()
+        for(a in vertices){
+            for(b in vertices){
+                ret.append("${distances[Edge(a, b)]} ")
+            }
+            ret.append("\n")
+        }
+        return ret.toString()
     }
 }

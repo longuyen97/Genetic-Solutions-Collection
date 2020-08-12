@@ -42,6 +42,23 @@
     </tr>
 </table>
 
+### Traveling Salesman
+
+```
+0 89 55 75 61 94 60 82 52 81 
+89 0 95 96 96 81 94 65 82 76 
+55 95 0 80 61 72 63 89 94 50 
+75 96 80 0 63 61 55 56 98 92 
+61 96 61 63 0 53 66 76 67 83 
+94 81 72 61 53 0 75 61 91 55 
+60 94 63 55 66 75 0 92 52 67 
+82 65 89 56 76 61 92 0 80 53 
+52 82 94 98 67 91 52 80 0 67 
+81 76 50 92 83 55 67 53 67 0 
+
+Genetic algorithm's solution: Shortest path 352.0 - Longest path 840.0
+```
+
 # Genetic algorithms
 
 Genetic Algorithm (GA) is a search-based optimization technique based on the principles of Genetics and Natural Selection. 
