@@ -18,7 +18,7 @@ class Chromosome {
     fun evaluate(): Double {
         fitness = 0.0
         for (i in 0 until genes.size) {
-            for (j in i + 1 until genes.size) {
+            for (j in 0 until genes.size) {
                 if (genes[i] == genes[j]) {
                     fitness -= 1.0
                 } else if (genes[j] - genes[i] == j - i || genes[i] - genes[j] == i - j) {
@@ -63,9 +63,9 @@ class Chromosome {
         for (y in 0 until 8) {
             for (x in 0 until 8) {
                 if (genes[y] == x + 1) {
-                    ret.append("1")
+                    ret.append("1 ")
                 } else {
-                    ret.append("0")
+                    ret.append("0 ")
                 }
             }
             ret.append("\n")

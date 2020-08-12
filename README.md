@@ -123,6 +123,21 @@ Solution on 30 cities:
 Genetic algorithm's solution after 4 seconds: Shortest path 1658.0 - Longest path 2395.0
 ```
 
+### N-Queen problem
+
+```
+Genetic algorithm's fittest solution (48.0) after 0 seconds: 
+
+0 0 0 0 0 0 1 0 
+0 0 0 0 1 0 0 0 
+0 0 0 0 0 0 0 1 
+0 1 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0 
+0 0 0 0 0 1 0 0 
+1 0 0 0 0 0 0 0 
+0 0 1 0 0 0 0 0 
+```
+
 # Genetic algorithms
 
 Genetic Algorithm (GA) is a search-based optimization technique based on the principles of Genetics and Natural Selection. 
