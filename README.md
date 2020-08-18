@@ -1,19 +1,5 @@
 # Results
 
-### Shakespeare Monkeys
-<table border="1" width="100%">
-    <tr>
-        <td><img src="images/033-jfk.png" width="1000"></td>
-    </tr>
-</table>
-
-### Knapsack
-<table border="1" width="100%">
-    <tr>
-        <td><img src="images/034-knapsack.png" width="1000"></td>
-    </tr>
-</table>
-
 ### Images Approximation
 
 <table border="1" width="100%">
@@ -39,6 +25,20 @@
         <td><img src="images/028-banksy.gif" width="250"></td>
         <td><img src="images/024-racoon.gif" width="250"></td>
         <td><img src="images/026-saitama.gif" width="250"></td>
+    </tr>
+</table>
+
+### Shakespeare Monkeys
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/033-jfk.png" width="1000"></td>
+    </tr>
+</table>
+
+### Knapsack
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/034-knapsack.png" width="1000"></td>
     </tr>
 </table>
 
