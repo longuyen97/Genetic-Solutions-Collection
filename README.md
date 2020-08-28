@@ -6,11 +6,6 @@ Nature is the best artist. Giving enough time, the environment around us can alm
 
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/021-naruto.png" width="250"></td>
-        <td><img src="images/029-steve.png" width="250"></td>
-        <td><img src="images/031-raupy.png" width="250"></td>
-    </tr>
-    <tr>
         <td><img src="images/022-naruto.gif" width="250"></td>
         <td><img src="images/030-steve.gif" width="250"></td>
         <td><img src="images/032-raupy.gif" width="250"></td>
@@ -18,11 +13,6 @@ Nature is the best artist. Giving enough time, the environment around us can alm
 </table>
 
 <table border="1" width="100%">
-    <tr>
-        <td><img src="images/027-banksy.png" width="250"></td>
-        <td><img src="images/023-racoon.png" width="250"></td>
-        <td><img src="images/025-saitama.png" width="250"></td>
-    </tr>
     <tr>
         <td><img src="images/028-banksy.gif" width="250"></td>
         <td><img src="images/024-racoon.gif" width="250"></td>
