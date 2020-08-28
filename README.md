@@ -1,4 +1,6 @@
-# Results
+## Results
+
+Applying evolutionary algorithms on constrained problems to compute the (almost) optimal solution can produce some very interesting results.
 
 ### Images Approximation
 
@@ -28,19 +30,27 @@
     </tr>
 </table>
 
+---
+
 ### Shakespeare Monkeys
+
 <table border="1" width="100%">
     <tr>
         <td><img src="images/033-jfk.png" width="1000"></td>
     </tr>
 </table>
 
+---
+
 ### Knapsack
+
 <table border="1" width="100%">
     <tr>
         <td><img src="images/034-knapsack.png" width="1000"></td>
     </tr>
 </table>
+
+---
 
 ### Traveling Salesman
 
@@ -123,6 +133,8 @@ Solution on 30 cities:
 Genetic algorithm's solution after 4 seconds: Shortest path 1658.0 - Longest path 2395.0
 ```
 
+---
+
 ### N-Queen problem
 
 ```
@@ -138,7 +150,9 @@ Genetic algorithm's fittest solution (48.0) after 0 seconds:
 0 0 1 0 0 0 0 0 
 ```
 
-# Genetic algorithms
+---
+
+## Some theory on Genetic algorithms
 
 Genetic Algorithm (GA) is a search-based optimization technique based on the principles of Genetics and Natural Selection. 
 It is frequently used to find optimal or near-optimal solutions to difficult problems which otherwise would take a lifetime
