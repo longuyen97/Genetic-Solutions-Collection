@@ -22,26 +22,6 @@ Nature is the best artist. Giving enough time, the environment around us can alm
 
 ---
 
-### Shakespeare Monkeys
-
-<table border="1" width="100%">
-    <tr>
-        <td><img src="images/033-jfk.png" width="1000"></td>
-    </tr>
-</table>
-
----
-
-### Knapsack
-
-<table border="1" width="100%">
-    <tr>
-        <td><img src="images/034-knapsack.png" width="1000"></td>
-    </tr>
-</table>
-
----
-
 ### Traveling Salesman
 
 Solution on 10 cities:
@@ -139,6 +119,26 @@ Genetic algorithm's fittest solution (48.0) after 0 seconds:
 1 0 0 0 0 0 0 0 
 0 0 1 0 0 0 0 0 
 ```
+
+---
+
+### Shakespeare Monkeys
+
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/033-jfk.png" width="1000"></td>
+    </tr>
+</table>
+
+---
+
+### Knapsack
+
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/034-knapsack.png" width="1000"></td>
+    </tr>
+</table>
 
 ---
 
