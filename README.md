@@ -1,6 +1,6 @@
 ## Results
 
-Applying evolutionary algorithms on constrained problems to compute the (almost) optimal solution can produce some very interesting results.
+Nature is the best artist. Giving enough time, the environment around us can almost always produce the optimal solution to any problem. Applying this idea and evolutionary algorithms on constrained problems to compute the (almost) optimal solution can produce some very interesting results where brute-force approachs may needs way too much time to be practical.
 
 ### Images Approximation
 
